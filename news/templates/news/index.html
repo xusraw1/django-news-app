@@ -17,7 +17,7 @@
                     </li>
                     {% if request.user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link active pro-link" data-url="{% url 'article_create' %}"
+                            <a class="nav-link active pro-link" data-url="#"
                                aria-current="page">Publish Article</a>
                         </li>
                     {% endif %}
@@ -33,4 +33,10 @@
         </div>
 
     </nav>
+    <div id="main">
+
+    </div>
+    <script>
+        setPage("home/")
+    </script>
 {% endblock %}
