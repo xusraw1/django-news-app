@@ -22,11 +22,32 @@
         })
     }
 
-    $('.pro-link').click(function(event) {
+    $('.pro-link').click(function (event) {
         event.preventDefault();
         var url = $(this).data('url')
         setPage(url);
     })
+
+    $("#submitButton").click(function (ev) {
+        var form = $("#article-form");
+        var url = form.attr('action');
+        var redirect = $(this).data('redirect')
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: form.serialize(),
+            success: function (data) {
+                if (data === "OK") {
+                    setPage(redirect)
+                } else {
+                    alert("Error!")
+                }
+            },
+            error: function (data) {
+            }
+        });
+    });
+
 </script>
 {% block content %}
 

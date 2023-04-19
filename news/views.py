@@ -39,3 +39,21 @@ def article_create(request):
             return render(request, 'news/create.html', {'form': form})
     else:
         return HttpResponse('You need Authenticate from this web-site for create Article!')
+
+
+def article_update(request, pk):
+    user = request.user
+    article = Article.objects.get(id=pk)
+    if user == article.author:
+        form = ArticleForm(instance=article)
+        if request.method == 'POST':
+            form = ArticleForm(instance=article, data=request.POST)
+            if form.is_valid():
+                form.save()
+                return HttpResponse("OK")
+            else:
+                return render(request, 'news/update.html', {'form': form, 'article': article})
+        else:
+            return render(request, 'news/update.html', {'form': form, 'article': article})
+    else:
+        return HttpResponse('OK')

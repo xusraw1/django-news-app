@@ -12,7 +12,7 @@
                     {{ article.body|linebreaks|safe }}
                 </p>
                 {% if request.user == article.author %}
-                    <a class="btn btn-warning" data-url="#">Update</a>
+                    <a class="btn btn-warning pro-link " data-url="{% url 'article_update' article.id %}">Update</a>
                     <a class="btn btn-danger" data-url="#">Delete</a>
                 {% endif %}
             </div>
