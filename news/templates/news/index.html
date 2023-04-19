@@ -17,7 +17,7 @@
                     </li>
                     {% if request.user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link active pro-link" data-url="#"
+                            <a class="nav-link active pro-link" data-url="{% url 'article_create' %}"
                                aria-current="page">Publish Article</a>
                         </li>
                     {% endif %}
