@@ -57,3 +57,15 @@ def article_update(request, pk):
             return render(request, 'news/update.html', {'form': form, 'article': article})
     else:
         return HttpResponse('OK')
+
+
+def article_delete(request, pk):
+    user = request.user
+    article = Article.objects.get(id=pk)
+    if user == article.author:
+        if request.method == 'POST':
+            article.delete()
+            return HttpResponse('OK')
+        return render(request, 'news/delete.html', {'article': article})
+    else:
+        return HttpResponse("Not Allowed")
